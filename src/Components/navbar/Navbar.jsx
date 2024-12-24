@@ -2,7 +2,7 @@ import './navbar.scss';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import profileImage from './Passport_Photograph1.jpg';
+import profileImage from './../../images/profilePhoto.jpg';
 import { useState } from 'react';
 const Navbar = () => {
     const [isScrolled,setIsScrolled]=useState(false);

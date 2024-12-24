@@ -1,0 +1,125 @@
+.login {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%), url("./../../images/nfBgImg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+
+    .top {
+        .wrapper {
+            padding: 20px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .logo {
+                height: 40px;
+            }
+        }
+    }
+
+    .container {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        top: 0;
+        left: 0;
+
+        .signinform {
+            width: 90%;
+            max-width: 400px;
+            height: 80vh;
+            padding: 30px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.25);
+            box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.25);
+            background-color: rgba(0, 0, 0, 0.5);
+
+            input{
+                height: 40px;
+                border-radius: 5px;
+                background-color: transparent;
+                color: whitesmoke;
+                padding-left: 10px;
+
+                &::placeholder{
+                    color: lightgray;
+                }
+                &:focus{
+                    outline: none;
+                    border: 1px solid white;
+                }
+            }
+
+            .loginBtn{
+                height: 40px;
+                background-color: red;
+                color:white;
+                border: none;
+                border-radius: 5px;
+                font-size: 18px;
+                font-weight: 500;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: darkred;
+                }
+            }
+
+            .orSpan , .forgotSpan{
+                text-align: center;
+            }
+            .codeBtn{
+                background-color:rgb(158, 158, 158, 0.6);
+                color:white;
+                border-radius: 5px;
+                height: 40px;
+                font-size: 16px;
+                font-weight: 500;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: rgba(158, 158, 158, 0.8);
+                }
+            }
+            .checkboxdiv{
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+
+                span{
+                    margin-left: 5px;
+                }
+            }
+            .signupdiv{
+                a{
+                    text-decoration: none;
+                    color: white;
+                    font-weight: bold;
+                    margin-left: 5px;
+
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .info{
+                color: lightgray;
+                a{
+                    text-decoration: none;
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}
