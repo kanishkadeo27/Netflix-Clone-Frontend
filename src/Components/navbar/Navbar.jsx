@@ -4,6 +4,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import profileImage from './../../images/profilePhoto.jpg';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Home from '../../pages/home/Home';
 const Navbar = () => {
     const [isScrolled,setIsScrolled]=useState(false);
 
@@ -19,9 +21,15 @@ const Navbar = () => {
             <div className="container">
                 <div className="left">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1198px-Netflix_2015_logo.svg.png?20190206123158" alt="netflix-logo" />
-                    <span>Homepage</span>
+                    <Link to='/' className='link' element={<Home/>}>
+                    <span>Home</span>
+                    </Link>
+                    <Link to='/series' className='link' element={<Home type='series'/>}>
                     <span>Series</span>
+                    </Link>
+                    <Link to='/movies' className='link' element={<Home type='movies'/>}>
                     <span>Movies</span>
+                    </Link>
                     <span>New and Popular</span>
                     <span>My List</span>
                 </div>
