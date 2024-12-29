@@ -4,7 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import { useState } from 'react';
-const ListItem = ({ index }) => {
+const ListItem = ({ index , item }) => {
   const [isHovered, setIsHovered] = useState(false);
   const trailer = "https://www.w3schools.com/html/mov_bbb.mp4";
   return (
