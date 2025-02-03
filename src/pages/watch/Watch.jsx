@@ -1,18 +1,26 @@
-import './watch.scss';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import "./watch.scss";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Watch = () => {
-    const trailer = "https://www.w3schools.com/html/mov_bbb.mp4";
+  const location = useLocation();
+  const [movieItem, setMovieItem] = useState(null);
 
-    return (
-        <div className='watch'>
-            <div className='back'>
-                <ArrowBackIcon />
-                Home
-            </div>
-            <video className='video' autoPlay progess controls src={trailer}/>
+  useEffect(() => {
+    setMovieItem(location?.state?.movie);
+  }, [location]);
+  return (
+    <div className="watch">
+      <Link to="/">
+        <div className="back">
+          <ArrowBackIcon />
+          Home
         </div>
-    )
-}
+      </Link>
+      <video className="video" autoPlay controls src={movieItem?.video} />
+    </div>
+  );
+};
 
-export default Watch
+export default Watch;

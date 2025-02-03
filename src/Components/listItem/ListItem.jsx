@@ -1,42 +1,66 @@
-import './listitem.scss';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import AddIcon from '@mui/icons-material/Add';
-import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
-import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
-import { useState } from 'react';
-const ListItem = ({ index , item }) => {
+import "./listitem.scss";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import AddIcon from "@mui/icons-material/Add";
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+const ListItem = ({ index, item }) => {
+  // console.log(item);
   const [isHovered, setIsHovered] = useState(false);
-  const trailer = "https://www.w3schools.com/html/mov_bbb.mp4";
+  const [movie, setMovie] = useState({});
+  // const trailer = movie?.trailer;
+
+  useEffect(() => {
+    const getMovie = async () => {
+      try {
+        const res = await axios.get(`/movies/find/` + item, {
+          headers: {
+            token:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NmQ2YmUwMzEwODk2MDBlOTllZThhNCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTczODU4MDg0NSwiZXhwIjoxNzM5MDEyODQ1fQ.Lt5vyyBh0n2WZTLFDpqfjZxTDLEFYHfW1ZuWRclx5L4",
+          },
+        });
+        setMovie(res?.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getMovie();
+  }, [item]);
+
   return (
-    <div className='listitem'
-      style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
-      onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}
-    >
-      <img src='https://images.unsplash.com/photo-1681890442554-9256eaaa3e67?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWF0cml4fGVufDB8fDB8fHww' alt='imagelist' />
-      {isHovered && (
-        <>
-          <video src={trailer} autoPlay={true} loop muted/>
-          <div className="itemInfo">
-            <div className="icons">
-              <PlayArrowIcon className='icon'/>
-              <AddIcon className='icon'/>
-              <ThumbUpOffAltIcon className='icon'/>
-              <ThumbDownOffAltIcon className='icon'/>
+    <Link to="/watch" state={{ movie }}>
+      <div
+        className="listitem"
+        style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <img src={movie?.img} alt="image" />
+        {isHovered && (
+          <>
+            <video src={movie?.trailer} autoPlay={true} loop muted />
+            <div className="itemInfo">
+              <div className="icons">
+                <PlayArrowIcon className="icon" />
+                <AddIcon className="icon" />
+                <ThumbUpOffAltIcon className="icon" />
+                <ThumbDownOffAltIcon className="icon" />
+              </div>
+              <div className="itemInfoTop">
+                <span className="duration">{movie?.duration}</span>
+                <span className="limit">+{movie?.limit}</span>
+                <span className="releaseYear">{movie?.year}</span>
+              </div>
+              <div className="desc">{movie?.desc}</div>
+              <div className="genre">{movie?.genre}</div>
             </div>
-            <div className="itemInfoTop">
-              <span>1 hour 15 mins</span>
-              <span className='limit'>+16</span>
-              <span>1999</span>
-            </div>
-            <div className="desc">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem dolorum illo velit assumenda, nihil mollitia.
-            </div>
-            <div className="genre">Action</div>
-          </div></>
-      )}
+          </>
+        )}
+      </div>
+    </Link>
+  );
+};
 
-    </div>
-  )
-}
-
-export default ListItem
+export default ListItem;
