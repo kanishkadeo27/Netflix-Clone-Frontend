@@ -4,9 +4,11 @@ import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Watch from "./pages/watch/Watch";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "./context/authContext/AuthContext";
 
 const App = () => {
-  const user = true;
+  const { user } = useContext(AuthContext);
   return (
     <BrowserRouter>
       <Routes>
@@ -21,7 +23,7 @@ const App = () => {
         />
         <Route
           path="/login"
-          element={!user ? <Login /> : <Navigate to="/register" />}
+          element={!user ? <Login /> : <Navigate to="/" />}
         />
         {user && (
           <>
