@@ -3,7 +3,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { useState, useEffect } from "react";
 import axios from "axios";
-const Featured = ({ type }) => {
+const Featured = ({ type, setGenre }) => {
   const [content, setContent] = useState(null);
 
   useEffect(() => {
@@ -22,13 +22,17 @@ const Featured = ({ type }) => {
     };
     getRandomContent();
   }, [type]);
-  console.log(content);
+  console.log(type);
   return (
     <div className="featured">
       {type && (
         <div className="category">
           <span>{type === "movies" ? "Movies" : "Series"}</span>
-          <select name="genre" id="genre">
+          <select
+            name="genre"
+            id="genre"
+            onChange={(e) => setGenre(e.target.value)}
+          >
             <option>Genre</option>
             <option value="adventure">Adventure</option>
             <option value="comedy">Comedy</option>
@@ -37,7 +41,7 @@ const Featured = ({ type }) => {
             <option value="historical">Historial</option>
             <option value="horror">Horror</option>
             <option value="romance">Romance</option>
-            <option value="sci-fic">Sci-fic</option>
+            <option value="scific">Sci-fic</option>
             <option value="thriller">Thriller</option>
             <option value="western">Western</option>
             <option value="animation">Animation</option>
